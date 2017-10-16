@@ -327,7 +327,13 @@ EOT;
 					require_once 'libs/PHPMailer/PHPMailerAutoload.php';
 
 					$mail = new PHPMailer;
-
+					$mail->SMTPOptions = array(
+    					'ssl' => array(
+        					'verify_peer' => false,
+        					'verify_peer_name' => false,
+        					'allow_self_signed' => true
+    					)
+					);
 					$mail->isSMTP();
 					$mail->Host = @$_POST['mailhost'];
 					$mail->SMTPAuth = !empty($_POST['mailuser']);
